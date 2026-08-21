@@ -1,0 +1,31 @@
+---
+layout: default
+title: Wszystkie wpisy
+permalink: /blog/
+summary: Pełne archiwum wpisów o nauce Javy — od najnowszego.
+---
+
+<div class="page wide">
+
+  <h1 class="page__title">Wszystkie wpisy</h1>
+  <p class="page__lead">
+    Wszystko, co dotąd napisałem — {{ site.posts.size }}
+    {% if site.posts.size == 1 %}wpis{% elsif site.posts.size < 5 %}wpisy{% else %}wpisów{% endif %},
+    od najnowszego.
+  </p>
+
+  {%- if site.posts.size > 0 %}
+    {%- assign years = site.posts | group_by_exp: "p", "p.date | date: '%Y'" -%}
+    {%- for year in years %}
+      <p class="yearhead">{{ year.name }}</p>
+      <ol class="cards">
+        {%- for post in year.items -%}
+          {% include post-card.html post=post %}
+        {%- endfor -%}
+      </ol>
+    {%- endfor %}
+  {%- else %}
+    <p>Nic tu jeszcze nie ma.</p>
+  {%- endif %}
+
+</div>

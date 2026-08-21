@@ -1,0 +1,60 @@
+---
+layout: default
+---
+
+<article class="article">
+
+  <header class="article__head read">
+    <a class="crumb" href="{{ '/blog/' | relative_url }}">← Wszystkie wpisy</a>
+
+    <h1 class="article__title">{{ page.title }}</h1>
+
+    {%- if page.summary %}
+      <p class="article__lead">{{ page.summary }}</p>
+    {%- endif %}
+
+    <p class="article__meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d.%m.%Y" }}</time>
+      <span>{{ content | number_of_words | divided_by: 190 | plus: 1 }} min czytania</span>
+      {%- if page.tags.first %}<span>#{{ page.tags.first }}</span>{% endif -%}
+    </p>
+  </header>
+
+  {%- if page.cover %}
+    <div class="read">
+      <img class="article__cover" src="{{ page.cover | relative_url }}" alt="" width="1200" height="675">
+    </div>
+  {%- endif %}
+
+  <div class="prose read">
+    {{ content }}
+  </div>
+
+  <footer class="article__foot read">
+    {%- if page.tags and page.tags.size > 0 %}
+      <ul class="taglist">
+        {%- for tag in page.tags -%}
+          <li><a href="{{ '/notatki/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif %}
+
+    {%- if page.next or page.previous %}
+      <nav class="prevnext" aria-label="Inne wpisy">
+        {%- if page.previous %}
+          <a href="{{ page.previous.url | relative_url }}">
+            <small>← Poprzedni</small>
+            <span>{{ page.previous.title }}</span>
+          </a>
+        {%- else %}<span></span>{% endif -%}
+        {%- if page.next %}
+          <a class="is-next" href="{{ page.next.url | relative_url }}">
+            <small>Następny →</small>
+            <span>{{ page.next.title }}</span>
+          </a>
+        {%- endif %}
+      </nav>
+    {%- endif %}
+  </footer>
+
+</article>

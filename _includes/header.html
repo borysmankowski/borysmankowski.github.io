@@ -1,0 +1,24 @@
+<header class="masthead">
+  <div class="wide masthead__row">
+
+    <a class="masthead__logo" href="{{ '/' | relative_url }}" aria-label="{{ site.title }} — strona główna">
+      <img src="{{ '/assets/img/logo.png' | relative_url }}" alt="{{ site.title }}" width="540" height="112">
+    </a>
+
+    <nav class="mainnav" id="mainnav" aria-label="Główne">
+      {%- for item in site.nav -%}
+        <a href="{{ item.url | relative_url }}"
+           {% if item.url != '/' and page.url contains item.url %}aria-current="page"{% endif %}>{{ item.name }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <button class="navtoggle" type="button" aria-label="Menu"
+            aria-expanded="false" aria-controls="mainnav" data-nav-toggle>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+    </button>
+
+  </div>
+</header>

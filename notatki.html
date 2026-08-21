@@ -1,0 +1,40 @@
+---
+layout: default
+title: Notatki
+permalink: /notatki/
+summary: Wpisy pogrupowane tematycznie — kolekcje, JVM, podstawy i reszta.
+---
+
+<div class="page wide">
+
+  <h1 class="page__title">Notatki</h1>
+  <p class="page__lead">
+    To samo co w archiwum, tylko poukładane tematami zamiast datami.
+    Przydaje się, gdy szukasz konkretnej rzeczy i nie pamiętasz, kiedy o niej pisałem.
+  </p>
+
+  {%- if site.tags.size > 0 %}
+    {%- assign sorted_tags = site.tags | sort -%}
+    {%- for tag in sorted_tags %}
+      {%- assign tag_name = tag[0] -%}
+      {%- assign tag_posts = tag[1] -%}
+      <div class="sechead" id="{{ tag_name | slugify }}" style="margin-top:3rem;">
+        <h2 class="sechead__title">#{{ tag_name }}</h2>
+        <span style="font-family:var(--mono);font-size:0.8rem;color:var(--muted);">
+          {{ tag_posts.size }}{% if tag_posts.size == 1 %} wpis{% elsif tag_posts.size < 5 %} wpisy{% else %} wpisów{% endif %}
+        </span>
+      </div>
+      <ol class="cards">
+        {%- for post in tag_posts -%}
+          {% include post-card.html post=post %}
+        {%- endfor -%}
+      </ol>
+    {%- endfor %}
+  {%- else %}
+    <div class="prose">
+      <p>Tagów jeszcze nie ma. Dodaj <code>tags: [java, kolekcje]</code> w nagłówku wpisu,
+         a sekcje pojawią się tu same.</p>
+    </div>
+  {%- endif %}
+
+</div>

@@ -1,0 +1,29 @@
+<footer class="sitefoot">
+  <div class="wide">
+    <div class="sitefoot__grid">
+
+      <div>
+        <img src="{{ '/assets/img/logo-white.png' | relative_url }}" alt="{{ site.title }}" width="540" height="112">
+        <p>{{ site.description }}</p>
+      </div>
+
+      <div>
+        <h3>Nawigacja</h3>
+        <ul>
+          {%- for item in site.nav %}
+            <li><a href="{{ item.url | relative_url }}">{{ item.name }}</a></li>
+          {%- endfor %}
+          <li><a href="{{ '/feed.xml' | relative_url }}">RSS</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="sitefoot__bottom">
+      <span>© {{ 'now' | date: "%Y" }} {{ site.author.name }}</span>
+      {%- if site.author.github %}<a href="https://github.com/{{ site.author.github }}" rel="me">GitHub</a>{% endif -%}
+      {%- if site.author.linkedin %}<a href="https://linkedin.com/in/{{ site.author.linkedin }}" rel="me">LinkedIn</a>{% endif -%}
+      {%- if site.author.email %}<a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>{% endif -%}
+    </div>
+  </div>
+</footer>

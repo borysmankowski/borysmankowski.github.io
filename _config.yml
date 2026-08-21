@@ -1,0 +1,65 @@
+# ─────────────────────────────────────────────────────────────
+#  pushtomain.pl — konfiguracja
+#  Po każdej zmianie w TYM pliku strona przebuduje się na nowo.
+#  To jedyny plik, w którym musisz coś zmienić na start.
+# ─────────────────────────────────────────────────────────────
+
+title: pushtomain
+tagline: Dziennik nauki Javy
+description: >-
+  Publiczny dziennik nauki Javy. Co zrozumiałem, co zepsułem
+  i czego nauczyłem się przy naprawianiu.
+
+# WAŻNE: bez ukośnika na końcu
+url: "https://pushtomain.pl"
+baseurl: ""
+
+lang: pl
+
+# ── Twoje dane ────────────────────────────────────────────────
+author:
+  name: Twoje Imię
+  first_name: Imię          # samo imię — pokazuje się w powitaniu na stronie głównej
+  # Zostaw puste (usuń wartość), żeby link zniknął z podglądu
+  email: kontakt@pushtomain.pl
+  github: twoj-nick
+  linkedin: twoj-profil
+
+# Od kiedy się uczysz — pokazuje się w nagłówku strony głównej
+learning_since: "marca 2026"
+
+# ── Struktura adresów ────────────────────────────────────────
+# Wpis "arraylist-vs-linkedlist" trafi pod /blog/arraylist-vs-linkedlist/
+permalink: /blog/:title/
+
+# ── Menu ──────────────────────────────────────────────────────
+nav:
+  - name: Blog
+    url: /blog/
+  - name: Notatki
+    url: /notatki/
+  - name: O mnie
+    url: /o-mnie/
+
+# ── Techniczne (nie ruszaj, jeśli nie musisz) ────────────────
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - README.md
+  - INSTRUKCJA.md
+  - .jekyll-cache
